@@ -3,15 +3,15 @@
 		<parser>
 			<property name="delimiter" value=" " />
 		</parser>
-		<record name="header" class="org.example.beans.FlatFileHeader">
+		<record name="header" class="com.neurogine.beans.FlatFileHeader">
 			<field name="recordType" length="13" literal="H" />
 			<field name="fileType" literal="FLAT_FILE" />
 		</record>
-		<record name="transaction" class="org.example.beans.FlatFileRecord">
+		<record name="transaction" class="com.neurogine.beans.FlatFileRecord">
 			<field name="REFERENCE_NO" length="34" justify="right" />
 			<field name="AMOUNT" length="16" justify="right" />
 		</record>
-		<record name="trailer" class="org.example.beans.FlatFileTrailer">
+		<record name="trailer" class="com.neurogine.beans.FlatFileTrailer">
 			<field name="recordType" length="13" literal="T" />
 			<field name="fileType" literal="FLAT_FILE" justify="right" />
 		</record>
