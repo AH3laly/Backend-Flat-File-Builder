@@ -23,6 +23,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+    
+    implementation files('libs/beanio-2.1.0.jar')
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -40,4 +42,11 @@ application {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.neurogine.App'
+    }
 }
