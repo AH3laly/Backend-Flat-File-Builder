@@ -29,7 +29,7 @@ public class FlatFileServiceImpl implements FlatFileService{
 	@Override
 	public void generate(List<FlatFileRecord> flatRecordList, String destinationFile) {
 		
-		BeanWriter beanWriter = streamFactory.createWriter(MAPPING_FILE_STREAM_NAME, new File(destinationFile));
+		BeanWriter beanWriter = streamFactory.createWriter(MAPPING_FILE_STREAM_NAME, new File(STORAGE_ROOT + destinationFile));
 		
 		addFlatFileHeader(beanWriter);
 		
@@ -51,6 +51,6 @@ public class FlatFileServiceImpl implements FlatFileService{
 
 	@Override
 	public void loadMappingFile(String sourceFile) {
-		streamFactory.load(sourceFile);
+		streamFactory.load(STORAGE_ROOT + sourceFile);
 	}
 }
