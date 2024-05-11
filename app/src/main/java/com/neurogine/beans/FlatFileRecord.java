@@ -1,7 +1,5 @@
 package com.neurogine.beans;
 
-import java.util.List;
-
 import org.beanio.annotation.Field;
 
 public class FlatFileRecord {
