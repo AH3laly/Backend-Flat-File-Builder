@@ -10,11 +10,13 @@ import com.neurogine.services.FlatFileServiceImpl;
 public class App {
 
     public static void main(String[] args) {
+    	    	
+    	String sourceMappingFile = args[0];
+    	String destinationFlatFile = args[1];
     	
     	FlatFileService flatFileService = new FlatFileServiceImpl();
-    	
-    	flatFileService.loadMappingFile();
-    	flatFileService.generate(generateDemoRecords());
+    	flatFileService.loadMappingFile(sourceMappingFile);
+    	flatFileService.generate(generateDemoRecords(), destinationFlatFile);
 
     }
     
@@ -22,8 +24,6 @@ public class App {
     private static List<FlatFileRecord> generateDemoRecords() {
     	
     	List<FlatFileRecord> demoDateList = new ArrayList<FlatFileRecord>();
-    	
-    	
     	
     	for(Integer i = 1; i < 20; i++) {
     		FlatFileRecord tempF = new FlatFileRecord();

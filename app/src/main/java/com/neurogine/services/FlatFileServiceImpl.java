@@ -13,10 +13,6 @@ public class FlatFileServiceImpl implements FlatFileService{
 
 	StreamFactory streamFactory = StreamFactory.newInstance();
 
-	@Override
-	public void generate(List<FlatFileRecord> content) {
-		generate(content, OUTPUT_FILE_NAME);
-	}
 	
 	private void addFlatFileHeader(BeanWriter beanWriter) {
 		beanWriter.write(new FlatFileHeader());
@@ -27,9 +23,14 @@ public class FlatFileServiceImpl implements FlatFileService{
 	}
 	
 	@Override
+	public void generate(List<FlatFileRecord> content) {
+		generate(content, getResourcePath() + OUTPUT_FILE_NAME);
+	}
+	
+	@Override
 	public void generate(List<FlatFileRecord> flatRecordList, String destinationFile) {
 		
-		BeanWriter beanWriter = streamFactory.createWriter(MAPPING_FILE_STREAM_NAME, new File(STORAGE_ROOT + destinationFile));
+		BeanWriter beanWriter = streamFactory.createWriter(MAPPING_FILE_STREAM_NAME, new File(destinationFile));
 		
 		addFlatFileHeader(beanWriter);
 		
@@ -46,11 +47,16 @@ public class FlatFileServiceImpl implements FlatFileService{
 
 	@Override
 	public void loadMappingFile() {
-		loadMappingFile(MAPPING_FILE_NAME);
+		loadMappingFile(getResourcePath() + MAPPING_FILE_NAME);
 	}
 
 	@Override
 	public void loadMappingFile(String sourceFile) {
-		streamFactory.load(STORAGE_ROOT + sourceFile);
+		streamFactory.load(sourceFile);
 	}
+	
+	public String getResourcePath() {
+		return this.getClass().getClassLoader().getResource("./").toString();
+	}
+	
 }
